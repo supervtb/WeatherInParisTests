@@ -9,9 +9,21 @@ import SwiftUI
 
 @main
 struct WeatherInParisApp: App {
+    @Dependency(\.router) var router
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RouterView(router: router) { path in
+                Group {
+                    switch path {
+                    case .homeScreen:
+                      HomeView()
+                            .navigationTitle(LocalizedStrings.weather.localized())
+                    case .detailsScreen:
+                      EmptyView()
+                    }
+                }
+            }
         }
     }
 }

@@ -7,18 +7,20 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
+    @Dependency(\.router) var router
+
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text(LocalizedStrings.helloWorld.localized())
+            Text(LocalizedStrings.weather.localized())
         }
         .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    HomeView()
 }
