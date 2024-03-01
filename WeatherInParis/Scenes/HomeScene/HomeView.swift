@@ -24,7 +24,14 @@ struct HomeView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
-                WeatherView()
+                WeatherView(
+                    currentCity: $viewModel.currentCity,
+                    dateString: $viewModel.dateString,
+                    image: $viewModel.image,
+                    weatherType: $viewModel.weatherType,
+                    temperatureString: $viewModel.temperatureString, 
+                    isLoaded: $viewModel.isLoaded
+                )
                 Image
                     .backgroundImage
                     .frame(width: Consts.defaultImageWidth)
@@ -41,13 +48,19 @@ struct HomeView: View {
                 }
                 .fixedSize(horizontal: true, vertical: false)
                 .background(Color.main)
-                .clipShape(RoundedRectangle(cornerSize: CGSize(width: Consts.cornerRadius, height: Consts.cornerRadius), style: .continuous))
+                .clipShape(RoundedRectangle(
+                    cornerSize: CGSize(width: Consts.cornerRadius,
+                                       height: Consts.cornerRadius
+                                      ), style: .continuous))
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
         }
         .refreshable {
+            viewModel.refreshData()
+        }
+        .onFirstAppear {
             viewModel.refreshData()
         }
         .scrollBounceBehavior(.basedOnSize, axes: [.vertical])

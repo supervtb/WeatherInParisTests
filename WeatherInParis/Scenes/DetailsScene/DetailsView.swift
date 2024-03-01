@@ -11,10 +11,23 @@ struct DetailsView: View {
     @ObservedObject var viewModel: DetailsViewModel
 
     var body: some View {
-        VStack {
-            Text("details")
+        ScrollView(showsIndicators: false) {
+            VStack {
+                WeatherView(
+                    currentCity: $viewModel.currentCity,
+                    dateString: $viewModel.dateString,
+                    image: $viewModel.image,
+                    weatherType: $viewModel.weatherType,
+                    temperatureString: $viewModel.temperatureString,
+                    isLoaded: $viewModel.isLoaded
+                )
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding()
+
         }
-        .padding()
+        .scrollBounceBehavior(.basedOnSize, axes: [.vertical])
+        .background(Color.bgPrimary)
     }
 }
 

@@ -17,6 +17,7 @@ struct WeatherRow: View {
             Text("\(Date().formatted(.dateTime.month().day()))")
                 .bold()
                 .font(.subheadline)
+                .foregroundStyle(Color.txtSecondary)
             HStack(spacing: 20) {
                 Image(systemName: "logo")
                     .font(.title2)
@@ -27,22 +28,28 @@ struct WeatherRow: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Min temp")
                         .font(.caption)
+                        .foregroundStyle(Color.txtSecondary)
                     Text("5")
                         .bold()
                         .font(.title)
+                        .foregroundStyle(Color.txtSecondary)
                 }
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Max temp")
                         .font(.caption)
+                        .foregroundStyle(Color.txtSecondary)
                     Text("5")
                         .bold()
                         .font(.title)
+                        .foregroundStyle(Color.txtSecondary)
                 }
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Status")
                         .font(.caption)
+                        .foregroundStyle(Color.txtSecondary)
                     Text("Cloudy")
                         .bold()
+                        .foregroundStyle(Color.txtSecondary)
                         .font(.title)
                 }
             }

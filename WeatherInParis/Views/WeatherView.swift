@@ -16,30 +16,43 @@ struct WeatherView: View {
         static let titleSize: CGFloat = 50
     }
 
+    @Binding var currentCity: String
+    @Binding var dateString: String
+    @Binding var image: Image
+    @Binding var weatherType: String
+    @Binding var temperatureString: String
+    @Binding var isLoaded: Bool
+
     var body: some View {
         VStack(alignment: .leading, spacing: Consts.defaultSpacing) {
-            Text(LocalizedStrings.paris.localized())
+            Text(currentCity)
                 .font(.system(size: Consts.titleSize))
                 .lineLimit(1)
                 .fontWeight(.bold)
                 .foregroundColor(.main)
                 .multilineTextAlignment(.leading)
-            Text("\(LocalizedStrings.today.localized()), \(Date().formatted(.dateTime.month().day().hour().minute()))")
+            Text("\(LocalizedStrings.today.localized()), \(dateString)")
                 .fontWeight(.light)
                 .foregroundColor(.main)
             VStack {
                 HStack(spacing: Consts.defaultSpacing) {
                     VStack(spacing: Consts.defaultIconSpacing) {
-                        Image(systemName: "cloud")
-                            .font(.system(size: 40))
-                            .foregroundColor(.main)
-                        Text("Cloud")
+                        if isLoaded {
+                            image
+                                .font(.system(size: 40))
+                                .foregroundColor(.main)
+                        } else {
+                            ProgressView()
+                                .fixedSize()
+                                .tint(Color.main)
+                        }
+                        Text(weatherType)
                             .foregroundColor(.main)
                             .scaledToFit()
                     }
                     .frame(alignment: .leading)
                     Spacer()
-                    Text("12" + "°")
+                    Text(temperatureString)
                         .lineLimit(1)
                         .font(.system(size: Consts.defaultTextSize))
                         .fontWeight(.bold)
@@ -53,8 +66,4 @@ struct WeatherView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
     }
-}
-
-#Preview {
-    WeatherView()
 }
