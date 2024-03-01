@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+struct ViewModelFactory {
+    @Dependency(\.router) private var router: Router
+
+    func buildHomeViewModel() -> HomeViewModel {
+        return HomeViewModel()
+    }
+
+    func buildDetailsViewModel() -> DetailsViewModel {
+        return DetailsViewModel()
+    }
+}

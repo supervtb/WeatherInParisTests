@@ -10,17 +10,27 @@ import SwiftUI
 @main
 struct WeatherInParisApp: App {
     @Dependency(\.router) var router
-    
+
+    private let vmFactory = ViewModelFactory()
+
+    init() {
+        // Use this if NavigationBarTitle is with Large Font
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.main]
+
+        // Use this if NavigationBarTitle is with displayMode = .inline
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.main]
+    }
+
     var body: some Scene {
         WindowGroup {
             RouterView(router: router) { path in
                 Group {
                     switch path {
                     case .homeScreen:
-                      HomeView()
-                            .navigationTitle(LocalizedStrings.weather.localized())
+                        HomeView(viewModel: vmFactory.buildHomeViewModel())
+                            .navigationTitle(LocalizedStrings.paris.localized())
                     case .detailsScreen:
-                      EmptyView()
+                        DetailsView(viewModel: vmFactory.buildDetailsViewModel())
                     }
                 }
             }

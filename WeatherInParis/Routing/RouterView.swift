@@ -27,15 +27,12 @@ public struct RouterView<T: Hashable, Content: View>: View {
         .environmentObject(router)
     }
 
-    /**
-     Initializes a new router view with with the provided router and view.
-
-          - Parameters:
-             - router: The main app router.
-             - buildView: The closure which creates root view on start.
-
-          - Returns: router view, which must be used as base view of the app.
-     */
+    /// Initializes a new router view with with the provided router and view.
+    ///
+    /// - Parameters:
+    ///     - router: The main app router.
+    ///     - buildView: The closure which creates root view on start.
+    /// - Returns: Router view, which must be used as base view of the app.
     public init(router: Router<T>, buildView: @escaping (T) -> Content) {
         self.router = router
         self.buildView = buildView

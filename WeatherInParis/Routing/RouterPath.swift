@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Navigation paths
 enum RouterPath {
     case homeScreen
     case detailsScreen

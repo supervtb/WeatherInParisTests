@@ -29,6 +29,11 @@
 		D44395A32B8F62D3002AB3AE /* WeatherInParisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44395A22B8F62D3002AB3AE /* WeatherInParisTests.swift */; };
 		D44395AD2B8F62D3002AB3AE /* WeatherInParisUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44395AC2B8F62D3002AB3AE /* WeatherInParisUITests.swift */; };
 		D44395AF2B8F62D3002AB3AE /* WeatherInParisUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44395AE2B8F62D3002AB3AE /* WeatherInParisUITestsLaunchTests.swift */; };
+		D46634AC2B913F5D0067EB01 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46634AB2B913F5D0067EB01 /* DetailsView.swift */; };
+		D46634AE2B913F690067EB01 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46634AD2B913F690067EB01 /* DetailsViewModel.swift */; };
+		D46634B02B9140870067EB01 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46634AF2B9140870067EB01 /* WeatherView.swift */; };
+		D46634B32B9142830067EB01 /* Color+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46634B22B9142830067EB01 /* Color+Name.swift */; };
+		D46634B72B914B060067EB01 /* UIColor+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46634B62B914B060067EB01 /* UIColor+Name.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +77,11 @@
 		D44395A82B8F62D3002AB3AE /* WeatherInParisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherInParisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44395AC2B8F62D3002AB3AE /* WeatherInParisUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInParisUITests.swift; sourceTree = "<group>"; };
 		D44395AE2B8F62D3002AB3AE /* WeatherInParisUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInParisUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D46634AB2B913F5D0067EB01 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		D46634AD2B913F690067EB01 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		D46634AF2B9140870067EB01 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		D46634B22B9142830067EB01 /* Color+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Name.swift"; sourceTree = "<group>"; };
+		D46634B62B914B060067EB01 /* UIColor+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Name.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +121,7 @@
 		D40B55812B90FC9F0081B086 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D46634B12B9142490067EB01 /* Color */,
 				D40B55822B90FCC30081B086 /* String */,
 			);
 			path = Utils;
@@ -128,6 +139,8 @@
 		D40B55872B9100490081B086 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D46634AA2B913F4C0067EB01 /* DetailsScene */,
+				D46634A72B913AB70067EB01 /* HomeScene */,
 				D40B55882B91005D0081B086 /* SceneCoordination */,
 			);
 			path = Scenes;
@@ -186,14 +199,14 @@
 		D44395902B8F62D2002AB3AE /* WeatherInParis */ = {
 			isa = PBXGroup;
 			children = (
+				D46634A82B913AD60067EB01 /* Models */,
+				D46634A92B913ADE0067EB01 /* Views */,
+				D40B55872B9100490081B086 /* Scenes */,
 				D40B55922B9101700081B086 /* Routing */,
 				D40B558D2B9101240081B086 /* DI */,
-				D40B55872B9100490081B086 /* Scenes */,
 				D40B55812B90FC9F0081B086 /* Utils */,
 				D40B557C2B90FB630081B086 /* Resources */,
 				D44395912B8F62D2002AB3AE /* WeatherInParisApp.swift */,
-				D44395932B8F62D2002AB3AE /* HomeView.swift */,
-				D40B559B2B9109F40081B086 /* HomeViewModel.swift */,
 				D44395972B8F62D3002AB3AE /* Preview Content */,
 			);
 			path = WeatherInParis;
@@ -222,6 +235,48 @@
 				D44395AE2B8F62D3002AB3AE /* WeatherInParisUITestsLaunchTests.swift */,
 			);
 			path = WeatherInParisUITests;
+			sourceTree = "<group>";
+		};
+		D46634A72B913AB70067EB01 /* HomeScene */ = {
+			isa = PBXGroup;
+			children = (
+				D44395932B8F62D2002AB3AE /* HomeView.swift */,
+				D40B559B2B9109F40081B086 /* HomeViewModel.swift */,
+			);
+			path = HomeScene;
+			sourceTree = "<group>";
+		};
+		D46634A82B913AD60067EB01 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D46634A92B913ADE0067EB01 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D46634AF2B9140870067EB01 /* WeatherView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D46634AA2B913F4C0067EB01 /* DetailsScene */ = {
+			isa = PBXGroup;
+			children = (
+				D46634AB2B913F5D0067EB01 /* DetailsView.swift */,
+				D46634AD2B913F690067EB01 /* DetailsViewModel.swift */,
+			);
+			path = DetailsScene;
+			sourceTree = "<group>";
+		};
+		D46634B12B9142490067EB01 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				D46634B22B9142830067EB01 /* Color+Name.swift */,
+				D46634B62B914B060067EB01 /* UIColor+Name.swift */,
+			);
+			path = Color;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,8 +436,11 @@
 			files = (
 				D40B558F2B9101360081B086 /* DependencyKey.swift in Sources */,
 				D44395942B8F62D2002AB3AE /* HomeView.swift in Sources */,
+				D46634B32B9142830067EB01 /* Color+Name.swift in Sources */,
 				D40B55962B91019B0081B086 /* RouterProtocol.swift in Sources */,
+				D46634AE2B913F690067EB01 /* DetailsViewModel.swift in Sources */,
 				D40B55912B91014A0081B086 /* DependencyWrapper.swift in Sources */,
+				D46634B02B9140870067EB01 /* WeatherView.swift in Sources */,
 				D40B558A2B9100750081B086 /* BaseViewModel.swift in Sources */,
 				D40B55942B91017C0081B086 /* Router.swift in Sources */,
 				D40B559A2B9102610081B086 /* RouterPath.swift in Sources */,
@@ -390,6 +448,8 @@
 				D40B55982B9101AC0081B086 /* RouterView.swift in Sources */,
 				D40B559C2B9109F40081B086 /* HomeViewModel.swift in Sources */,
 				D40B55842B90FCFA0081B086 /* LocalizedStrings.swift in Sources */,
+				D46634AC2B913F5D0067EB01 /* DetailsView.swift in Sources */,
+				D46634B72B914B060067EB01 /* UIColor+Name.swift in Sources */,
 				D40B558C2B9100C00081B086 /* ViewModelFactory.swift in Sources */,
 				D40B55862B90FDA80081B086 /* String+Localized.swift in Sources */,
 				D44395922B8F62D2002AB3AE /* WeatherInParisApp.swift in Sources */,

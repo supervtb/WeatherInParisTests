@@ -8,8 +8,7 @@
 import Foundation
 
 /// BaseViewModel class provides view state logic to ViewModel.
-/// BaseViewModel class provides view state logic to ViewModel.
-open class BaseViewModel {
+open class BaseViewModel: ObservableObject {
 
     /// Different states of the View.
     public enum ViewState {
@@ -29,8 +28,6 @@ open class BaseViewModel {
     /// Current state on the view
     @Published public var currentState: ViewState = .start
 
-    /**
-        Default initializer.
-     */
+    /// Default initializer.
     public init() {}
 }

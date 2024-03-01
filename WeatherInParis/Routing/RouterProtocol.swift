@@ -9,10 +9,10 @@ import SwiftUI
 
 /// RouterProtocol provides router logic
 public protocol RouterProtocol<T>: ObservableObject {
-    /**
-        Associated type T expects Hashable type.
-        Expected implementation is to create an enum with all screens in the app.
-     */
+
+    /// Associated type T expects Hashable type.
+    /// Expected implementation is to create an enum with all screens in the app.
+
     associatedtype T = Hashable
 
     /// Root view

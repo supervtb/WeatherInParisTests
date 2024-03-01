@@ -1,6 +1,44 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
+    "Cloud" : {
+
+    },
+    "details" : {
+
+    },
+    "paris" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paris"
+          }
+        }
+      }
+    },
+    "today" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today"
+          }
+        }
+      }
+    },
     "weather" : {
       "extractionState" : "manual",
       "localizations" : {

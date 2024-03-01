@@ -16,6 +16,7 @@ public protocol DependencyKey {
 }
 
 public struct DependencyValues {
+    
     /// Singleton
     private static var current = DependencyValues()
 

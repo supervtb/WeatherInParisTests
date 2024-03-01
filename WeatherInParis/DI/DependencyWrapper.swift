@@ -18,14 +18,11 @@ import Foundation
         set { DependencyValues[keyPath] = newValue }
     }
 
-    /**
-     Initializes a new dependency via keyPath.
-
-          - Parameters:
-             - keyPath: path to registered object to get it or update, works as dictionary.
-
-          - Returns: dependency.
-     */
+    /// Initializes a new dependency via keyPath.
+    ///
+    /// - Parameters:
+    ///     - keyPath: Path to registered object to get it or update, works as dictionary.
+    /// - Returns: Dependency.
     public init(_ keyPath: WritableKeyPath<DependencyValues, T>) {
         self.keyPath = keyPath
     }

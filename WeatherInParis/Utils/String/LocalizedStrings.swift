@@ -9,6 +9,8 @@ import Foundation
 
 enum LocalizedStrings: String {
     case weather
+    case paris
+    case today
 
     func localized() -> String {
         return rawValue.localized()
