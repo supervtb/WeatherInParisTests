@@ -24,6 +24,7 @@ public struct RouterView<T: Hashable, Content: View>: View {
                 buildView(path)
             }
         }
+        .tint(Color.main)
         .environmentObject(router)
     }
 

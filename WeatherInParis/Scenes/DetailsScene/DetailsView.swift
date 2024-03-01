@@ -9,7 +9,7 @@ import SwiftUI
 struct DetailsView: View {
     @Dependency(\.router) var router
     @ObservedObject var viewModel: DetailsViewModel
-
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
