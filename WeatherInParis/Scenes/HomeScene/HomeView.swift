@@ -8,19 +8,40 @@
 import SwiftUI
 
 struct HomeView: View {
+    private struct Consts {
+        static let defaultImageWidth: CGFloat = 350
+        static let minSpacing: CGFloat = 20
+        static let cornerRadius: CGFloat = 20
+    }
+
     @Dependency(\.router) var router
     @ObservedObject var viewModel: HomeViewModel
 
     var body: some View {
-        ZStack {
-            Color.bgPrimary.ignoresSafeArea()
+        ScrollView(showsIndicators: false) {
             VStack {
                 WeatherView()
+                Image
+                    .backgroundImage
+                    .frame(width: Consts.defaultImageWidth)
+                Spacer(minLength: Consts.minSpacing)
+                LazyVStack(alignment: .leading) {
+                    //TODO: Add rows for weather next n days
+                    ForEach((0..<5)) { _ in
+                        WeatherRow()
+                            .padding(Consts.minSpacing)
+                    }
+                }
+                .fixedSize(horizontal: true, vertical: false)
+                .background(Color.main)
+                .clipShape(RoundedRectangle(cornerSize: CGSize(width: Consts.cornerRadius, height: Consts.cornerRadius), style: .continuous))
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
         }
+        .scrollBounceBehavior(.basedOnSize, axes: [.vertical])
+        .background(Color.bgPrimary)
     }
 }
 

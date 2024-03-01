@@ -28,7 +28,6 @@ struct WeatherInParisApp: App {
                     switch path {
                     case .homeScreen:
                         HomeView(viewModel: vmFactory.buildHomeViewModel())
-                            .navigationTitle(LocalizedStrings.paris.localized())
                     case .detailsScreen:
                         DetailsView(viewModel: vmFactory.buildDetailsViewModel())
                     }

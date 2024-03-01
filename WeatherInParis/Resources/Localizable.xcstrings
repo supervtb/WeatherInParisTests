@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@" : {
+
+    },
     "%@, %@" : {
       "localizations" : {
         "en" : {
@@ -11,10 +14,22 @@
         }
       }
     },
+    "5" : {
+
+    },
     "Cloud" : {
 
     },
+    "Cloudy" : {
+
+    },
     "details" : {
+
+    },
+    "Max temp" : {
+
+    },
+    "Min temp" : {
 
     },
     "paris" : {
@@ -27,6 +42,9 @@
           }
         }
       }
+    },
+    "Status" : {
+
     },
     "today" : {
       "extractionState" : "manual",
