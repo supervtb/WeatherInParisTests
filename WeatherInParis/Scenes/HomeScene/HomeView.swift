@@ -14,8 +14,12 @@ struct HomeView: View {
         static let cornerRadius: CGFloat = 20
     }
 
-    @Dependency(\.router) var router
     @ObservedObject var viewModel: HomeViewModel
+
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        UIRefreshControl.appearance().tintColor = UIColor.main
+    }
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -30,6 +34,9 @@ struct HomeView: View {
                     ForEach((0..<5)) { _ in
                         WeatherRow()
                             .padding(Consts.minSpacing)
+                            .onTapGesture {
+                                viewModel.showDetails()
+                            }
                     }
                 }
                 .fixedSize(horizontal: true, vertical: false)
@@ -39,6 +46,9 @@ struct HomeView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
+        }
+        .refreshable {
+            viewModel.refreshData()
         }
         .scrollBounceBehavior(.basedOnSize, axes: [.vertical])
         .background(Color.bgPrimary)

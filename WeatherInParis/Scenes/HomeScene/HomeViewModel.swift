@@ -9,6 +9,8 @@ import SwiftUI
 
 final class HomeViewModel: BaseViewModel {
 
+    @Dependency(\.router) var router
+
     override init() {
         super.init()
         setupModelState()
@@ -25,5 +27,13 @@ final class HomeViewModel: BaseViewModel {
         case .failure:
             print("Model failure")
         }
+    }
+
+    func showDetails() {
+        router.push(to: .detailsScreen)
+    }
+
+    func refreshData() {
+        
     }
 }
