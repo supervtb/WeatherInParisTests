@@ -15,7 +15,7 @@ struct HomeView: View {
     }
 
     @ObservedObject var viewModel: HomeViewModel
-    
+
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         UIRefreshControl.appearance().tintColor = UIColor.main
@@ -36,14 +36,23 @@ struct HomeView: View {
                     .backgroundImage
                     .frame(width: Consts.defaultImageWidth)
                 Spacer(minLength: Consts.minSpacing)
-                LazyVStack(alignment: .center) {
+                VStack(alignment: .center) {
                     // TODO: Add rows for weather next n days
                     ForEach((0..<5)) { _ in
-                        WeatherRow()
-                            .padding(Consts.minSpacing)
-                            .onTapGesture {
-                                viewModel.showDetails()
-                            }
+                        WeatherRow(
+                            image: .constant(Image(systemName: "logo")),
+                            headerText: .constant("Mar, 1"),
+                            leftTitle: .constant("Min temp"),
+                            centerTitle: .constant("Max temp"),
+                            rightTitle: .constant("Status"),
+                            leftValue: .constant("5"),
+                            centerValue: .constant("6"),
+                            rightValue: .constant("Cloudy")
+                        )
+                        .padding(Consts.minSpacing)
+                        .onTapGesture {
+                            viewModel.showDetails()
+                        }
                     }
                 }
                 .background(Color.main)

@@ -14,6 +14,7 @@ struct WeatherView: View {
         static let defaultIconSpacing: CGFloat = 20
         static let defaultTextSize: CGFloat = 100
         static let titleSize: CGFloat = 50
+        static let imageSize: CGFloat = 40
     }
 
     @Binding var currentCity: String
@@ -39,7 +40,7 @@ struct WeatherView: View {
                     VStack(spacing: Consts.defaultIconSpacing) {
                         if isLoaded {
                             image
-                                .font(.system(size: 40))
+                                .font(.system(size: Consts.imageSize))
                                 .foregroundColor(.main)
                         } else {
                             ProgressView()

@@ -12,47 +12,56 @@ struct WeatherRow: View {
 
     }
 
+    @Binding var image: Image
+    @Binding var headerText: String
+    @Binding var leftTitle: String
+    @Binding var centerTitle: String
+    @Binding var rightTitle: String
+    @Binding var leftValue: String
+    @Binding var centerValue: String
+    @Binding var rightValue: String
+
     var body: some View {
         VStack(alignment: .leading) {
-            Text("\(Date().formatted(.dateTime.month().day()))")
+            Text(headerText)
                 .bold()
                 .font(.subheadline)
                 .foregroundStyle(Color.txtSecondary)
             HStack(spacing: 20) {
-                Image(systemName: "logo")
+                image
                     .font(.title2)
                     .frame(width: 20, height: 20)
                     .padding()
                     .background(Color(hue: 1.0, saturation: 0.0, brightness: 0.888))
                     .cornerRadius(50)
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Min temp")
+                    Text(leftTitle)
                         .font(.caption)
                         .foregroundStyle(Color.txtSecondary)
                     Spacer()
-                    Text("5")
+                    Text(leftValue)
                         .bold()
                         .font(.title)
                         .foregroundStyle(Color.txtSecondary)
                     Spacer()
                 }
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Max temp")
+                    Text(centerTitle)
                         .font(.caption)
                         .foregroundStyle(Color.txtSecondary)
                     Spacer()
-                    Text("5")
+                    Text(centerValue)
                         .bold()
                         .font(.title)
                         .foregroundStyle(Color.txtSecondary)
                     Spacer()
                 }
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Status")
+                    Text(rightTitle)
                         .font(.caption)
                         .foregroundStyle(Color.txtSecondary)
                     Spacer()
-                    Text("Cloudy")
+                    Text(rightValue)
                         .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                         .bold()
                         .foregroundStyle(Color.txtSecondary)
@@ -65,5 +74,14 @@ struct WeatherRow: View {
 }
 
 #Preview {
-    WeatherRow()
+    WeatherRow(
+        image: .constant(Image(systemName: "logo")),
+        headerText: .constant("Mart 1"),
+        leftTitle: .constant("Min temp"),
+        centerTitle: .constant("Max temp"),
+        rightTitle: .constant("Status"),
+        leftValue: .constant("5"),
+        centerValue: .constant("6"),
+        rightValue: .constant("Cloudy")
+    )
 }
