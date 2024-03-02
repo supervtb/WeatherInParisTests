@@ -31,7 +31,7 @@ struct WeatherView: View {
                 .fontWeight(.bold)
                 .foregroundColor(.main)
                 .multilineTextAlignment(.leading)
-            Text("\(LocalizedStrings.today.localized()), \(dateString)")
+            Text("\(dateString)")
                 .fontWeight(.light)
                 .foregroundColor(.main)
             VStack {
@@ -64,6 +64,5 @@ struct WeatherView: View {
             .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
     }
 }

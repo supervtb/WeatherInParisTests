@@ -20,6 +20,28 @@
     "Cloudy" : {
 
     },
+    "feelsLike" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feels like"
+          }
+        }
+      }
+    },
+    "humidity" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Humidity"
+          }
+        }
+      }
+    },
     "Max temp" : {
 
     },
@@ -37,8 +59,41 @@
         }
       }
     },
+    "pressure" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pressure"
+          }
+        }
+      }
+    },
     "Status" : {
 
+    },
+    "tempMax" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temp max"
+          }
+        }
+      }
+    },
+    "tempMin" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temp min"
+          }
+        }
+      }
     },
     "today" : {
       "extractionState" : "manual",
@@ -58,6 +113,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Weather"
+          }
+        }
+      }
+    },
+    "windSpeed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind speed"
           }
         }
       }

@@ -12,7 +12,7 @@ final class HomeViewModel: BaseViewModel {
 
     @Dependency(\.router) var router
     @Published var currentCity: String = LocalizedStrings.paris.localized()
-    @Published var dateString: String = Date().formatted(.dateTime.month().day())
+    @Published var dateString: String = "\(LocalizedStrings.today.localized()), \(Date().formatted(.dateTime.month().day()))"
     @Published var image: Image = Image(systemName: "exclamationmark.triangle.fill")
     @Published var weatherType: String = "Cloudy"
     @Published var temperatureString: String = "12"
@@ -22,6 +22,19 @@ final class HomeViewModel: BaseViewModel {
     override init() {
         super.init()
         setupModelState()
+    }
+
+    func showDetails() {
+        isLoaded = true
+        router.push(to: .detailsScreen)
+    }
+
+    func refreshData() {
+        currentState = .loading
+        // state after loading data
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.currentState = .success
+        }
     }
 
     private func setupModelState() {
@@ -38,19 +51,5 @@ final class HomeViewModel: BaseViewModel {
                 print("error")
             }
         }.store(in: &bag)
-    }
-
-    func showDetails() {
-        isLoaded = true
-        router.push(to: .detailsScreen)
-    }
-
-    func refreshData() {
-        currentState = .loading
-        // state after loading data
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) { [weak self] in
-            self?.currentState = .success
-        }
-
     }
 }

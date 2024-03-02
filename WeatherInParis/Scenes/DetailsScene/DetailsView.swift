@@ -7,9 +7,14 @@
 import SwiftUI
 
 struct DetailsView: View {
+    private struct Consts {
+        static let minSpacing: CGFloat = 20
+        static let cornerRadius: CGFloat = 20
+    }
+
     @Dependency(\.router) var router
     @ObservedObject var viewModel: DetailsViewModel
-    
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
@@ -21,10 +26,25 @@ struct DetailsView: View {
                     temperatureString: $viewModel.temperatureString,
                     isLoaded: $viewModel.isLoaded
                 )
+                VStack(spacing: Consts.minSpacing) {
+                    WeatherDetailsRow(title: LocalizedStrings.tempMin.localized(), description: $viewModel.tempMin)
+                    WeatherDetailsRow(title: LocalizedStrings.tempMax.localized(), description: $viewModel.tempMax)
+                    WeatherDetailsRow(title: LocalizedStrings.feelsLike.localized(), description: $viewModel.feelsLike)
+                    WeatherDetailsRow(title: LocalizedStrings.pressure.localized(), description: $viewModel.pressure)
+                    WeatherDetailsRow(title: LocalizedStrings.humidity.localized(), description: $viewModel.humidity)
+                    WeatherDetailsRow(title: LocalizedStrings.windSpeed.localized(), description: $viewModel.windSpeed)
+                }
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.main)
+                .clipShape(RoundedRectangle(
+                    cornerSize: CGSize(
+                        width: Consts.cornerRadius,
+                        height: Consts.cornerRadius
+                    ), style: .continuous))
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
-
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .scrollBounceBehavior(.basedOnSize, axes: [.vertical])
         .background(Color.bgPrimary)

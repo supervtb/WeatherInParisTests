@@ -35,6 +35,7 @@
 		D46634B32B9142830067EB01 /* Color+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46634B22B9142830067EB01 /* Color+Name.swift */; };
 		D46634B72B914B060067EB01 /* UIColor+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46634B62B914B060067EB01 /* UIColor+Name.swift */; };
 		D49135AC2B927C7600AF342E /* View+FirstAppear.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49135AB2B927C7600AF342E /* View+FirstAppear.swift */; };
+		D4963CFB2B92A5DA0043B5D4 /* WeatherDetailsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4963CFA2B92A5DA0043B5D4 /* WeatherDetailsRow.swift */; };
 		D4F5D47C2B92368800E02150 /* Image+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F5D47B2B92368800E02150 /* Image+Name.swift */; };
 		D4F5D47E2B9241E000E02150 /* WeatherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F5D47D2B9241E000E02150 /* WeatherRow.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		D46634B22B9142830067EB01 /* Color+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Name.swift"; sourceTree = "<group>"; };
 		D46634B62B914B060067EB01 /* UIColor+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Name.swift"; sourceTree = "<group>"; };
 		D49135AB2B927C7600AF342E /* View+FirstAppear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+FirstAppear.swift"; sourceTree = "<group>"; };
+		D4963CFA2B92A5DA0043B5D4 /* WeatherDetailsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsRow.swift; sourceTree = "<group>"; };
 		D4F5D47B2B92368800E02150 /* Image+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Name.swift"; sourceTree = "<group>"; };
 		D4F5D47D2B9241E000E02150 /* WeatherRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -263,6 +265,7 @@
 			children = (
 				D46634AF2B9140870067EB01 /* WeatherView.swift */,
 				D4F5D47D2B9241E000E02150 /* WeatherRow.swift */,
+				D4963CFA2B92A5DA0043B5D4 /* WeatherDetailsRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				D46634B32B9142830067EB01 /* Color+Name.swift in Sources */,
 				D40B55962B91019B0081B086 /* RouterProtocol.swift in Sources */,
 				D46634AE2B913F690067EB01 /* DetailsViewModel.swift in Sources */,
+				D4963CFB2B92A5DA0043B5D4 /* WeatherDetailsRow.swift in Sources */,
 				D40B55912B91014A0081B086 /* DependencyWrapper.swift in Sources */,
 				D46634B02B9140870067EB01 /* WeatherView.swift in Sources */,
 				D40B558A2B9100750081B086 /* BaseViewModel.swift in Sources */,

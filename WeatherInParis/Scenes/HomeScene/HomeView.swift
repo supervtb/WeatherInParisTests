@@ -37,7 +37,7 @@ struct HomeView: View {
                     .frame(width: Consts.defaultImageWidth)
                 Spacer(minLength: Consts.minSpacing)
                 LazyVStack(alignment: .center) {
-                    //TODO: Add rows for weather next n days
+                    // TODO: Add rows for weather next n days
                     ForEach((0..<5)) { _ in
                         WeatherRow()
                             .padding(Consts.minSpacing)
@@ -48,17 +48,20 @@ struct HomeView: View {
                 }
                 .background(Color.main)
                 .clipShape(RoundedRectangle(
-                    cornerSize: CGSize(width: Consts.cornerRadius,
-                                       height: Consts.cornerRadius
-                                      ), style: .continuous))
+                    cornerSize: CGSize(
+                        width: Consts.cornerRadius,
+                        height: Consts.cornerRadius
+                    ), style: .continuous))
                 Spacer()
             }
             .padding()
         }
         .refreshable {
+            // MARK: Reload data
             viewModel.refreshData()
         }
         .onFirstAppear {
+            // MARK: Load data when screen is loaded first time
             viewModel.refreshData()
         }
         .scrollBounceBehavior(.basedOnSize, axes: [.vertical])
