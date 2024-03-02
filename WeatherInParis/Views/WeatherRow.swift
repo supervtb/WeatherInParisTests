@@ -29,32 +29,38 @@ struct WeatherRow: View {
                     Text("Min temp")
                         .font(.caption)
                         .foregroundStyle(Color.txtSecondary)
+                    Spacer()
                     Text("5")
                         .bold()
                         .font(.title)
                         .foregroundStyle(Color.txtSecondary)
+                    Spacer()
                 }
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Max temp")
                         .font(.caption)
                         .foregroundStyle(Color.txtSecondary)
+                    Spacer()
                     Text("5")
                         .bold()
                         .font(.title)
                         .foregroundStyle(Color.txtSecondary)
+                    Spacer()
                 }
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Status")
                         .font(.caption)
                         .foregroundStyle(Color.txtSecondary)
+                    Spacer()
                     Text("Cloudy")
+                        .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                         .bold()
                         .foregroundStyle(Color.txtSecondary)
                         .font(.title)
+                    Spacer()
                 }
             }
         }
-        .fixedSize()
     }
 }
 

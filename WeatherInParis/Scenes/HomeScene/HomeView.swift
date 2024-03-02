@@ -15,7 +15,7 @@ struct HomeView: View {
     }
 
     @ObservedObject var viewModel: HomeViewModel
-
+    
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         UIRefreshControl.appearance().tintColor = UIColor.main
@@ -29,14 +29,14 @@ struct HomeView: View {
                     dateString: $viewModel.dateString,
                     image: $viewModel.image,
                     weatherType: $viewModel.weatherType,
-                    temperatureString: $viewModel.temperatureString, 
+                    temperatureString: $viewModel.temperatureString,
                     isLoaded: $viewModel.isLoaded
                 )
                 Image
                     .backgroundImage
                     .frame(width: Consts.defaultImageWidth)
                 Spacer(minLength: Consts.minSpacing)
-                LazyVStack(alignment: .leading) {
+                LazyVStack(alignment: .center) {
                     //TODO: Add rows for weather next n days
                     ForEach((0..<5)) { _ in
                         WeatherRow()
@@ -46,7 +46,6 @@ struct HomeView: View {
                             }
                     }
                 }
-                .fixedSize(horizontal: true, vertical: false)
                 .background(Color.main)
                 .clipShape(RoundedRectangle(
                     cornerSize: CGSize(width: Consts.cornerRadius,
@@ -54,7 +53,6 @@ struct HomeView: View {
                                       ), style: .continuous))
                 Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
         }
         .refreshable {
