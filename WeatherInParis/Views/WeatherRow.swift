@@ -6,13 +6,16 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct WeatherRow: View {
     private struct Consts {
-
+        static let defaultSpacing: CGFloat = 8
+        static let defaultIconSize: CGFloat = 20
+        static let defaultLineLimit: Int = 2
     }
 
-    @Binding var image: Image
+    @Binding var image: KFImage
     @Binding var headerText: String
     @Binding var leftTitle: String
     @Binding var centerTitle: String
@@ -29,12 +32,14 @@ struct WeatherRow: View {
                 .foregroundStyle(Color.txtSecondary)
             HStack(spacing: 20) {
                 image
+                    .placeholder({ _ in
+                        ProgressView()
+                            .tint(Color.bgPrimary)
+                    })
                     .font(.title2)
-                    .frame(width: 20, height: 20)
+                    .frame(width: Consts.defaultIconSize, height: Consts.defaultIconSize)
                     .padding()
-                    .background(Color(hue: 1.0, saturation: 0.0, brightness: 0.888))
-                    .cornerRadius(50)
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: Consts.defaultSpacing) {
                     Text(leftTitle)
                         .font(.caption)
                         .foregroundStyle(Color.txtSecondary)
@@ -45,7 +50,7 @@ struct WeatherRow: View {
                         .foregroundStyle(Color.txtSecondary)
                     Spacer()
                 }
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: Consts.defaultSpacing) {
                     Text(centerTitle)
                         .font(.caption)
                         .foregroundStyle(Color.txtSecondary)
@@ -56,13 +61,13 @@ struct WeatherRow: View {
                         .foregroundStyle(Color.txtSecondary)
                     Spacer()
                 }
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: Consts.defaultSpacing) {
                     Text(rightTitle)
                         .font(.caption)
                         .foregroundStyle(Color.txtSecondary)
                     Spacer()
                     Text(rightValue)
-                        .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                        .lineLimit(Consts.defaultLineLimit)
                         .bold()
                         .foregroundStyle(Color.txtSecondary)
                         .font(.title)
@@ -71,17 +76,4 @@ struct WeatherRow: View {
             }
         }
     }
-}
-
-#Preview {
-    WeatherRow(
-        image: .constant(Image(systemName: "logo")),
-        headerText: .constant("Mart 1"),
-        leftTitle: .constant("Min temp"),
-        centerTitle: .constant("Max temp"),
-        rightTitle: .constant("Status"),
-        leftValue: .constant("5"),
-        centerValue: .constant("6"),
-        rightValue: .constant("Cloudy")
-    )
 }

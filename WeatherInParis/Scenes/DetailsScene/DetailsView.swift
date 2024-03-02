@@ -5,6 +5,7 @@
 //  Created by Chubakov, Albert on 29/02/2024.
 //
 import SwiftUI
+import Kingfisher
 
 struct DetailsView: View {
     private struct Consts {
@@ -21,7 +22,7 @@ struct DetailsView: View {
                 WeatherView(
                     currentCity: $viewModel.currentCity,
                     dateString: $viewModel.dateString,
-                    image: $viewModel.image,
+                    image: .constant(KFImage($viewModel.image.wrappedValue)),
                     weatherType: $viewModel.weatherType,
                     temperatureString: $viewModel.temperatureString,
                     isLoaded: $viewModel.isLoaded

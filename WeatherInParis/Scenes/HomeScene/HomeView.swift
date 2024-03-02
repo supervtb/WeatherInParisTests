@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HomeView: View {
     private struct Consts {
@@ -27,7 +28,7 @@ struct HomeView: View {
                 WeatherView(
                     currentCity: $viewModel.currentCity,
                     dateString: $viewModel.dateString,
-                    image: $viewModel.image,
+                    image: .constant(KFImage($viewModel.image.wrappedValue)),
                     weatherType: $viewModel.weatherType,
                     temperatureString: $viewModel.temperatureString,
                     isLoaded: $viewModel.isLoaded
@@ -40,7 +41,7 @@ struct HomeView: View {
                     // TODO: Add rows for weather next n days
                     ForEach((0..<5)) { _ in
                         WeatherRow(
-                            image: .constant(Image(systemName: "logo")),
+                            image: .constant(KFImage($viewModel.image.wrappedValue)),
                             headerText: .constant("Mar, 1"),
                             leftTitle: .constant("Min temp"),
                             centerTitle: .constant("Max temp"),

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct WeatherView: View {
     private struct Consts {
@@ -19,7 +20,7 @@ struct WeatherView: View {
 
     @Binding var currentCity: String
     @Binding var dateString: String
-    @Binding var image: Image
+    @Binding var image: KFImage
     @Binding var weatherType: String
     @Binding var temperatureString: String
     @Binding var isLoaded: Bool
@@ -40,7 +41,7 @@ struct WeatherView: View {
                     VStack(spacing: Consts.defaultIconSpacing) {
                         if isLoaded {
                             image
-                                .font(.system(size: Consts.imageSize))
+                                .frame(width: Consts.imageSize, height: Consts.imageSize)
                                 .foregroundColor(.main)
                         } else {
                             ProgressView()
