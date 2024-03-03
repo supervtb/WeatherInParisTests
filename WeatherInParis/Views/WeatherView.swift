@@ -17,14 +17,14 @@ struct WeatherView: View {
         static let titleSize: CGFloat = 50
         static let imageSize: CGFloat = 100
     }
-    
+
     @Binding var currentCity: String
     @Binding var dateString: String
     @Binding var image: KFImage
     @Binding var weatherType: String
     @Binding var temperatureString: String
     @Binding var isLoaded: Bool
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: Consts.defaultSpacing) {
             Text(currentCity)
@@ -49,14 +49,13 @@ struct WeatherView: View {
                     }
                     Text(weatherType)
                         .foregroundColor(.main)
-                    
+
                 }
                 Spacer()
                 Text(temperatureString)
                     .lineLimit(1)
                     .font(.system(size: Consts.defaultTextSize))
                     .fontWeight(.bold)
-                    .padding()
                     .foregroundColor(.main)
                     .layoutPriority(1)
             }
