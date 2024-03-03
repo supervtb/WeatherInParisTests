@@ -24,6 +24,7 @@ final class HomeViewModel: BaseViewModel {
     @Published var weatherType: String = ""
     @Published var temperatureString: String = ""
     @Published var forecast: [ForecastEmbedded] = []
+    @Published var errorMessage: String = ""
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -61,12 +62,11 @@ final class HomeViewModel: BaseViewModel {
                 self?.temperatureString = "\(Int(data.main.temp.rounded()))°"
                 self?.weatherType = data.weather?.first?.description?.capitalized ?? ""
                 self?.currentState = .success
+                self?.loadForecastData()
             case .failure(let error):
                 self?.currentState = .failure
             }
         }
-
-        loadForecastData()
     }
 
     /// Format timestamp to date string
@@ -125,7 +125,8 @@ final class HomeViewModel: BaseViewModel {
             case .success:
                 print("")
             case .failure:
-                print("error")
+                print("failure")
+                self?.errorMessage = LocalizedStrings.baseError.localized()
             }
         }.store(in: &bag)
     }
@@ -133,7 +134,8 @@ final class HomeViewModel: BaseViewModel {
     private func filterForecasets(forecasts: [ForecastEmbedded]) -> [ForecastEmbedded] {
         let slicedData = forecasts.sliced(by: [.year, .month, .day], for: \.dt)
         let filtered = slicedData.compactMap { _, values in
-            return values.first
+            let midIndex = values.count / 2
+            return values[midIndex]
         }
         return filtered.sorted { $0.dt < $1.dt }
     }

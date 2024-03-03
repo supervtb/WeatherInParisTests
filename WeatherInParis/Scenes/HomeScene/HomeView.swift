@@ -39,7 +39,13 @@ struct HomeView: View {
                     .backgroundImage
                     .frame(width: Consts.defaultImageWidth)
                 Spacer(minLength: Consts.minSpacing)
-                
+
+                // MARK: Show error
+                if viewModel.currentState == .failure {
+                    Text($viewModel.errorMessage.wrappedValue)
+                        .foregroundStyle(Color.textPrimary)
+                }
+
                 // MARK: Forecasts for next 5 days
                 VStack(alignment: .center) {
                     ForEach($viewModel.forecast, id: \.self) {
@@ -76,7 +82,6 @@ struct HomeView: View {
             // MARK: Load data when screen is loaded first time
             viewModel.refreshData()
         }
-        .scrollBounceBehavior(.basedOnSize, axes: [.vertical])
         .background(Color.bgPrimary)
     }
 }

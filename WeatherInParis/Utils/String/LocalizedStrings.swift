@@ -17,6 +17,7 @@ enum LocalizedStrings: String {
     case pressure
     case humidity
     case windSpeed
+    case baseError
 
     func localized() -> String {
         return rawValue.localized()
