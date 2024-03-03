@@ -12,7 +12,10 @@ final class DetailsViewModel: BaseViewModel {
     
     @Dependency(\.router) var router
     @Published var currentCity: String = LocalizedStrings.paris.localized()
-    @Published var dateString: String = "\(LocalizedStrings.today.localized()), \(Date().formatted(.dateTime.month().day()))"
+    @Published var dateString: String = {
+        let today = LocalizedStrings.today.localized()
+        return "\(today), \(Date().formatted(.dateTime.month().day()))"
+    }()
     @Published var image: URL? = URL(string: "https://openweathermap.org/img/wn/10d@2x.png")
     @Published var weatherType: String = "Cloudy"
     @Published var temperatureString: String = "12"

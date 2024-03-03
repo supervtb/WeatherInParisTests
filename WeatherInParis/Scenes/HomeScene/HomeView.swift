@@ -15,40 +15,42 @@ struct HomeView: View {
         static let cornerRadius: CGFloat = 20
     }
 
-    @ObservedObject var viewModel: HomeViewModel
+    @StateObject var viewModel: HomeViewModel
 
     init(viewModel: HomeViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
         UIRefreshControl.appearance().tintColor = UIColor.main
     }
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
+                
+                // MARK: Current day view
                 WeatherView(
                     currentCity: $viewModel.currentCity,
                     dateString: $viewModel.dateString,
                     image: .constant(KFImage($viewModel.image.wrappedValue)),
                     weatherType: $viewModel.weatherType,
                     temperatureString: $viewModel.temperatureString,
-                    isLoaded: $viewModel.isLoaded
+                    isLoaded: $viewModel.currentState.wrappedValue != .loading ? .constant(true) : .constant(false)
                 )
                 Image
                     .backgroundImage
                     .frame(width: Consts.defaultImageWidth)
                 Spacer(minLength: Consts.minSpacing)
+                
+                // MARK: Forecasts for next 5 days
                 VStack(alignment: .center) {
-                    // TODO: Add rows for weather next n days
-                    ForEach((0..<5)) { _ in
+                    ForEach($viewModel.forecast, id: \.self) {
                         WeatherRow(
-                            image: .constant(KFImage($viewModel.image.wrappedValue)),
-                            headerText: .constant("Mar, 1"),
-                            leftTitle: .constant("Min temp"),
-                            centerTitle: .constant("Max temp"),
-                            rightTitle: .constant("Status"),
-                            leftValue: .constant("5"),
-                            centerValue: .constant("6"),
-                            rightValue: .constant("Cloudy")
+                            image: .constant(KFImage(viewModel.prepareImageUrl(
+                                from: $0.weather.first?.icon.wrappedValue ?? ""
+                            ))),
+                            headerText: .constant(viewModel.formattedDateString(from: $0.dt.wrappedValue)),
+                            leftValue: .constant("\(viewModel.doubleSting(from: $0.main.temp.wrappedValue))°"),
+                            centerValue: .constant("\(viewModel.doubleSting(from: $0.main.tempMin.wrappedValue))°"),
+                            rightValue: .constant("\(viewModel.doubleSting(from: $0.main.tempMax.wrappedValue))°")
                         )
                         .padding(Consts.minSpacing)
                         .onTapGesture {

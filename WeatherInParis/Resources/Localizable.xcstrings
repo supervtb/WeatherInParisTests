@@ -14,9 +14,6 @@
         }
       }
     },
-    "5" : {
-
-    },
     "Cloudy" : {
 
     },
@@ -42,12 +39,6 @@
         }
       }
     },
-    "Max temp" : {
-
-    },
-    "Min temp" : {
-
-    },
     "paris" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -69,9 +60,6 @@
           }
         }
       }
-    },
-    "Status" : {
-
     },
     "tempMax" : {
       "extractionState" : "manual",

@@ -7,16 +7,29 @@
 
 import SwiftUI
 import Combine
+import Alamofire
 
 final class HomeViewModel: BaseViewModel {
+    private struct Consts {
+        static let doubleFormat: String = "%.2f"
+        static let dateFormat: String = "MMMM, d"
+    }
 
     @Dependency(\.router) var router
     @Published var currentCity: String = LocalizedStrings.paris.localized()
-    @Published var dateString: String = "\(LocalizedStrings.today.localized()), \(Date().formatted(.dateTime.month().day()))"
-    @Published var image: URL? = URL(string: "https://openweathermap.org/img/wn/10d@2x.png")
-    @Published var weatherType: String = "Cloudy"
-    @Published var temperatureString: String = "12"
-    @Published var isLoaded: Bool = true
+    @Published var dateString: String = {
+        return "\(LocalizedStrings.today.localized()), \(Date().formatted(.dateTime.month().day()))"
+    }()
+    @Published var image: URL? = URL(string: "")
+    @Published var weatherType: String = ""
+    @Published var temperatureString: String = ""
+    @Published var forecast: [ForecastEmbedded] = []
+
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = Consts.dateFormat
+        return formatter
+    }()
     private var bag = Set<AnyCancellable>()
 
     override init() {
@@ -24,32 +37,104 @@ final class HomeViewModel: BaseViewModel {
         setupModelState()
     }
 
+    /// Navigate to details view
+    ///
+    /// - Parameters:
+    ///     - router: The main app router.
+    ///     - buildView: The closure which creates root view on start.
     func showDetails() {
-        isLoaded = true
         router.push(to: .detailsScreen)
     }
 
+    /// Load forecast data
     func refreshData() {
         currentState = .loading
-        // state after loading data
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-            self?.currentState = .success
+        AF.request(
+            "https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=\(Bundle.accessToken)&units=metric"
+        )
+        .responseDecodable(of: WeatherModel.self) { [weak self] response in
+            switch response.result {
+            case .success(let data):
+                self?.image = URL(
+                    string: "https://openweathermap.org/img/wn/\(data.weather?.first?.icon ?? "")@2x.png"
+                )
+                self?.temperatureString = "\(Int(data.main.temp.rounded()))°"
+                self?.weatherType = data.weather?.first?.description?.capitalized ?? ""
+                self?.currentState = .success
+            case .failure(let error):
+                self?.currentState = .failure
+            }
+        }
+
+        loadForecastData()
+    }
+
+    /// Format timestamp to date string
+    ///
+    /// - Parameters:
+    ///     - value: Timestamp.
+    /// - Returns: Formatted string with date.
+    func formattedDateString(from value: Date) -> String {
+        return dateFormatter.string(from: value)
+    }
+
+    /// Format double value to string
+    ///
+    /// - Parameters:
+    ///     - value: Double.
+    /// - Returns: Formatted string with double value.
+    func doubleSting(from value: Double) -> String {
+        return String(format: Consts.doubleFormat, value)
+    }
+
+    /// Create URL from string
+    ///
+    /// - Parameters:
+    ///     - string: URL string.
+    /// - Returns: URL.
+    func prepareImageUrl(from string: String) -> URL? {
+        let str = "https://openweathermap.org/img/wn/\(string)@2x.png"
+        return URL(string: str)
+    }
+
+    private func loadForecastData() {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .secondsSince1970
+        AF.request(
+            "https://api.openweathermap.org/data/2.5/forecast?q=Paris&appid=\(Bundle.accessToken)&units=metric"
+        )
+        .responseDecodable(of: ForecastModel.self, decoder: decoder) { [weak self] response in
+            switch response.result {
+            case .success(let data):
+                self?.forecast = self?.filterForecasets(forecasts: data.list) ?? []
+                self?.currentState = .success
+            case .failure(let errpr):
+                print(errpr)
+                self?.currentState = .failure
+            }
         }
     }
 
     private func setupModelState() {
         $currentState.sink { [weak self] val in
             switch val {
-            case .start: 
+            case .start:
                 print("start")
-            case .loading: 
+            case .loading:
                 print("loading")
-                self?.isLoaded = false
             case .success:
-                self?.isLoaded = true
-            case .failure: 
+                print("")
+            case .failure:
                 print("error")
             }
         }.store(in: &bag)
+    }
+
+    private func filterForecasets(forecasts: [ForecastEmbedded]) -> [ForecastEmbedded] {
+        let slicedData = forecasts.sliced(by: [.year, .month, .day], for: \.dt)
+        let filtered = slicedData.compactMap { _, values in
+            return values.first
+        }
+        return filtered.sorted { $0.dt < $1.dt }
     }
 }
