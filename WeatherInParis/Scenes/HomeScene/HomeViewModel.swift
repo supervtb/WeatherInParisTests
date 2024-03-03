@@ -23,7 +23,7 @@ final class HomeViewModel: BaseViewModel {
     @Published var image: URL? = URL(string: "")
     @Published var weatherType: String = ""
     @Published var temperatureString: String = ""
-    @Published var forecast: [ForecastEmbedded] = []
+    @Published var forecast: [Forecast] = []
     @Published var errorMessage: String = ""
 
     private let dateFormatter: DateFormatter = {
@@ -131,7 +131,7 @@ final class HomeViewModel: BaseViewModel {
         }.store(in: &bag)
     }
 
-    private func filterForecasets(forecasts: [ForecastEmbedded]) -> [ForecastEmbedded] {
+    private func filterForecasets(forecasts: [Forecast]) -> [Forecast] {
         let slicedData = forecasts.sliced(by: [.year, .month, .day], for: \.dt)
         let filtered = slicedData.compactMap { _, values in
             let midIndex = values.count / 2

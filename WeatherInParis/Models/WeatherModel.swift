@@ -36,22 +36,3 @@ struct WeatherModel: Identifiable, Decodable {
     var wind: Wind?
     var weather: [Weather]?
 }
-
-struct ForecastEmbedded: Hashable, Decodable {
-    var dt: Date
-    var main: Main
-    var weather: [Weather]
-    var wind: Wind?
-    
-    static func == (lhs: ForecastEmbedded, rhs: ForecastEmbedded) -> Bool {
-        return lhs.dt == rhs.dt
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(dt)
-    }
-}
-
-struct ForecastModel: Decodable {
-    var list: [ForecastEmbedded]
-}

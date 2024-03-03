@@ -42,6 +42,7 @@
 		D4EC96782B93EB9100DEDCDC /* Endpoints.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4EC96772B93EB9100DEDCDC /* Endpoints.plist */; };
 		D4EC967A2B93EC9C00DEDCDC /* Bundle+Plist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC96792B93EC9C00DEDCDC /* Bundle+Plist.swift */; };
 		D4EC967C2B94A6A200DEDCDC /* Array+SliceDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC967B2B94A6A200DEDCDC /* Array+SliceDate.swift */; };
+		D4EC967E2B94B66B00DEDCDC /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC967D2B94B66B00DEDCDC /* ForecastModel.swift */; };
 		D4F5D47C2B92368800E02150 /* Image+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F5D47B2B92368800E02150 /* Image+Name.swift */; };
 		D4F5D47E2B9241E000E02150 /* WeatherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F5D47D2B9241E000E02150 /* WeatherRow.swift */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,7 @@
 		D4EC96772B93EB9100DEDCDC /* Endpoints.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Endpoints.plist; sourceTree = "<group>"; };
 		D4EC96792B93EC9C00DEDCDC /* Bundle+Plist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Plist.swift"; sourceTree = "<group>"; };
 		D4EC967B2B94A6A200DEDCDC /* Array+SliceDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SliceDate.swift"; sourceTree = "<group>"; };
+		D4EC967D2B94B66B00DEDCDC /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
 		D4F5D47B2B92368800E02150 /* Image+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Name.swift"; sourceTree = "<group>"; };
 		D4F5D47D2B9241E000E02150 /* WeatherRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				D4EC96712B93A54E00DEDCDC /* WeatherModel.swift */,
+				D4EC967D2B94B66B00DEDCDC /* ForecastModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				D44395942B8F62D2002AB3AE /* HomeView.swift in Sources */,
 				D4EC967C2B94A6A200DEDCDC /* Array+SliceDate.swift in Sources */,
 				D46634B32B9142830067EB01 /* Color+Name.swift in Sources */,
+				D4EC967E2B94B66B00DEDCDC /* ForecastModel.swift in Sources */,
 				D40B55962B91019B0081B086 /* RouterProtocol.swift in Sources */,
 				D46634AE2B913F690067EB01 /* DetailsViewModel.swift in Sources */,
 				D4963CFB2B92A5DA0043B5D4 /* WeatherDetailsRow.swift in Sources */,
