@@ -15,16 +15,16 @@ struct WeatherView: View {
         static let defaultIconSpacing: CGFloat = 20
         static let defaultTextSize: CGFloat = 100
         static let titleSize: CGFloat = 50
-        static let imageSize: CGFloat = 40
+        static let imageSize: CGFloat = 100
     }
-
+    
     @Binding var currentCity: String
     @Binding var dateString: String
     @Binding var image: KFImage
     @Binding var weatherType: String
     @Binding var temperatureString: String
     @Binding var isLoaded: Bool
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: Consts.defaultSpacing) {
             Text(currentCity)
@@ -33,38 +33,46 @@ struct WeatherView: View {
                 .fontWeight(.bold)
                 .foregroundColor(.main)
                 .multilineTextAlignment(.leading)
-            Text("\(dateString)")
+            Text(dateString)
                 .fontWeight(.light)
                 .foregroundColor(.main)
-            VStack {
-                HStack(spacing: Consts.defaultSpacing) {
-                    VStack(alignment: .leading, spacing: Consts.defaultIconSpacing) {
-                        if isLoaded {
-                            image
-                                .frame(width: Consts.imageSize, height: Consts.imageSize)
-                                .foregroundColor(.main)
-                        } else {
-                            ProgressView()
-                                .fixedSize()
-                                .tint(Color.main)
-                        }
-                        Text(weatherType)
+            HStack(alignment: .center, spacing: Consts.defaultSpacing) {
+                VStack(alignment: .center) {
+                    if isLoaded {
+                        image
+                            .frame(width: Consts.imageSize, height: Consts.imageSize)
                             .foregroundColor(.main)
-                            .scaledToFit()
+                    } else {
+                        ProgressView()
+                            .fixedSize()
+                            .tint(Color.main)
                     }
-                    .frame(alignment: .leading)
-                    Spacer()
-                    Text(temperatureString)
-                        .lineLimit(1)
-                        .font(.system(size: Consts.defaultTextSize))
-                        .fontWeight(.bold)
-                        .padding()
+                    Text(weatherType)
                         .foregroundColor(.main)
-                        .layoutPriority(1)
+                    
                 }
+                Spacer()
+                Text(temperatureString)
+                    .lineLimit(1)
+                    .font(.system(size: Consts.defaultTextSize))
+                    .fontWeight(.bold)
+                    .padding()
+                    .foregroundColor(.main)
+                    .layoutPriority(1)
             }
-            .frame(maxWidth: .infinity)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity)
     }
+}
+
+#Preview {
+    WeatherView(
+        currentCity: .constant("Paris"),
+        dateString: .constant("12.12.12"),
+        image: .constant(KFImage(URL(string: "https://openweathermap.org/img/wn/10n@2x.png"))),
+        weatherType: .constant("cloudy"),
+        temperatureString: .constant("12"),
+        isLoaded: .constant(true)
+    )
+    .background(.red)
 }

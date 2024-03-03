@@ -63,7 +63,7 @@ final class HomeViewModel: BaseViewModel {
                 self?.weatherType = data.weather?.first?.description?.capitalized ?? ""
                 self?.currentState = .success
                 self?.loadForecastData()
-            case .failure(let error):
+            case .failure:
                 self?.currentState = .failure
             }
         }
