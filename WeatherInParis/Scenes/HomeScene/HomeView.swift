@@ -48,19 +48,19 @@ struct HomeView: View {
 
                 // MARK: Forecasts for next 5 days
                 VStack(alignment: .center) {
-                    ForEach($viewModel.forecast, id: \.self) {
+                    ForEach($viewModel.forecast, id: \.self) { forecast in
                         WeatherRow(
                             image: .constant(KFImage(viewModel.prepareImageUrl(
-                                from: $0.weather.first?.icon.wrappedValue ?? ""
+                                from: forecast.weather.first?.icon.wrappedValue ?? ""
                             ))),
-                            headerText: .constant(viewModel.formattedDateString(from: $0.dt.wrappedValue)),
-                            leftValue: .constant("\(viewModel.doubleSting(from: $0.main.temp.wrappedValue))°"),
-                            centerValue: .constant("\(viewModel.doubleSting(from: $0.main.tempMin.wrappedValue))°"),
-                            rightValue: .constant("\(viewModel.doubleSting(from: $0.main.tempMax.wrappedValue))°")
+                            headerText: .constant(viewModel.formattedDateString(from: forecast.dt.wrappedValue)),
+                            leftValue: .constant("\(viewModel.doubleSting(from: forecast.main.temp.wrappedValue))°"),
+                            centerValue: .constant("\(viewModel.doubleSting(from: forecast.main.tempMin.wrappedValue))°"),
+                            rightValue: .constant("\(viewModel.doubleSting(from: forecast.main.tempMax.wrappedValue))°")
                         )
                         .padding(Consts.minSpacing)
                         .onTapGesture {
-                            viewModel.showDetails()
+                            viewModel.showDetails(forecast: forecast.wrappedValue)
                         }
                     }
                 }

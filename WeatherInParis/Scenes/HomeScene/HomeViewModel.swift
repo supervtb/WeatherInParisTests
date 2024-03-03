@@ -43,8 +43,8 @@ final class HomeViewModel: BaseViewModel {
     /// - Parameters:
     ///     - router: The main app router.
     ///     - buildView: The closure which creates root view on start.
-    func showDetails() {
-        router.push(to: .detailsScreen)
+    func showDetails(forecast: Forecast) {
+        router.push(to: .detailsScreen(data: forecast))
     }
 
     /// Load forecast data

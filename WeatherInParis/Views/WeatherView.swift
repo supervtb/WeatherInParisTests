@@ -38,7 +38,7 @@ struct WeatherView: View {
                 .foregroundColor(.main)
             VStack {
                 HStack(spacing: Consts.defaultSpacing) {
-                    VStack(spacing: Consts.defaultIconSpacing) {
+                    VStack(alignment: .leading, spacing: Consts.defaultIconSpacing) {
                         if isLoaded {
                             image
                                 .frame(width: Consts.imageSize, height: Consts.imageSize)

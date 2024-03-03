@@ -28,8 +28,8 @@ struct WeatherInParisApp: App {
                     switch path {
                     case .homeScreen:
                         HomeView(viewModel: vmFactory.buildHomeViewModel())
-                    case .detailsScreen:
-                        DetailsView(viewModel: vmFactory.buildDetailsViewModel())
+                    case .detailsScreen(let forecast):
+                        DetailsView(viewModel: vmFactory.buildDetailsViewModel(forecast: forecast))
                     }
                 }
             }

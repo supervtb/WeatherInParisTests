@@ -8,7 +8,16 @@
 import Foundation
 
 /// Navigation paths
-enum RouterPath {
+enum RouterPath: Hashable {
     case homeScreen
-    case detailsScreen
+    case detailsScreen(data: Forecast)
+
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .homeScreen:
+            break
+        case .detailsScreen(let data):
+            hasher.combine(data)
+        }
+    }
 }

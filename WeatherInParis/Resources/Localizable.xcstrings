@@ -25,9 +25,6 @@
         }
       }
     },
-    "Cloudy" : {
-
-    },
     "feelsLike" : {
       "extractionState" : "manual",
       "localizations" : {

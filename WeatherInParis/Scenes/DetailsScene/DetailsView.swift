@@ -14,7 +14,7 @@ struct DetailsView: View {
     }
 
     @Dependency(\.router) var router
-    @ObservedObject var viewModel: DetailsViewModel
+    @StateObject var viewModel: DetailsViewModel
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -50,8 +50,4 @@ struct DetailsView: View {
         .scrollBounceBehavior(.basedOnSize, axes: [.vertical])
         .background(Color.bgPrimary)
     }
-}
-
-#Preview {
-    DetailsView(viewModel: ViewModelFactory().buildDetailsViewModel())
 }
