@@ -7,8 +7,11 @@
 
 import Foundation
 
+// MARK: - Extension for string localization
 extension String {
 
+    /// Convert string key to localized string
+    /// - Returns: Localized string.
     func localized() -> String {
         return NSLocalizedString(self, comment: "\(self)_comment")
     }
