@@ -19,7 +19,6 @@ final class DetailsViewModel: BaseViewModel {
         static let tempSymb: String = "°"
     }
 
-    @Dependency(\.router) var router
     @Published var currentCity: String = LocalizedStrings.paris.localized()
     @Published var dateString: String = ""
     @Published var image: URL? = URL(string: "")
@@ -34,6 +33,8 @@ final class DetailsViewModel: BaseViewModel {
     @Published var windSpeed: String = ""
     @Published var isLoaded: Bool = true
     
+    private let baseIconUrl: String
+    private let iconExtension: String
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = Consts.dateFormat
@@ -41,8 +42,10 @@ final class DetailsViewModel: BaseViewModel {
     }()
     private var bag = Set<AnyCancellable>()
 
-    init(forecast: Forecast) {
+    init(forecast: Forecast, baseIconUrl: String = Bundle.baseIconUrl, iconExtension: String = Bundle.iconExtension) {
         self.forecast = forecast
+        self.baseIconUrl = baseIconUrl
+        self.iconExtension = iconExtension
         super.init()
         setupModelState()
     }
@@ -55,7 +58,7 @@ final class DetailsViewModel: BaseViewModel {
                 self?.dateString = self?.dateFormatter.string(from: self?.forecast.dt ?? Date()) ?? ""
                 self?.weatherType = self?.forecast.weather.first?.description?.capitalized ?? ""
                 self?.image = URL(
-                    string: "https://openweathermap.org/img/wn/\(self?.forecast.weather.first?.icon ?? "")@2x.png"
+                    string: "\(self?.baseIconUrl ?? "")\(self?.forecast.weather.first?.icon ?? "")\(self?.iconExtension ?? "")"
                 )
                 self?.tempMin = "\(self?.doubleSting(from: self?.forecast.main.tempMin) ?? "")\(Consts.tempSymb)"
                 self?.tempMax = "\(self?.doubleSting(from: self?.forecast.main.tempMax) ?? "")\(Consts.tempSymb)"

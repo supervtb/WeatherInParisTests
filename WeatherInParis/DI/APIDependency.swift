@@ -11,7 +11,7 @@ private struct ApiKey: DependencyKey {
     static var currentValue: Api = ApiImpl()
 }
 
-// MARK: - Register Router to Dependencies
+// MARK: - Register API to Dependencies
 extension DependencyValues {
     var api: Api {
         get { Self[ApiKey.self] }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Extension for Color
 extension Color {
     static let bgPrimary = Color("backgroundPrimary")
     static let textPrimary = Color("main")

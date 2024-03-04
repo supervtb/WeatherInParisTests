@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Extension for string localization
+/// Extension for string localization
 extension String {
 
     /// Convert string key to localized string
