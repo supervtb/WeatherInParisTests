@@ -2,7 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>baseUrl</key>
+	<string>https://api.openweathermap.org/data/2.5/weather?q=Paris&amp;appid=</string>
 	<key>accessToken</key>
 	<string>3577ba202a513ce029efb9b04534db44</string>
+	<key>baseIconUrl</key>
+	<string>https://openweathermap.org/img/wn/</string>
+	<key>iconExtension</key>
+	<string>@2x.png</string>
+	<key>baseForecastUrl</key>
+	<string>https://api.openweathermap.org/data/2.5/forecast?q=Paris&amp;appid=</string>
+	<key>query</key>
+	<string>&amp;units=metric</string>
 </dict>
 </plist>

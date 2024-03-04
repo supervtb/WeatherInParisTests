@@ -16,6 +16,7 @@ final class HomeViewModel: BaseViewModel {
     }
 
     @Dependency(\.router) var router
+    @Dependency(\.api) var api
     @Published var currentCity: String = LocalizedStrings.paris.localized()
     @Published var dateString: String = {
         return "\(LocalizedStrings.today.localized()), \(Date().formatted(.dateTime.month().day()))"
@@ -31,9 +32,13 @@ final class HomeViewModel: BaseViewModel {
         formatter.dateFormat = Consts.dateFormat
         return formatter
     }()
+    private let baseIconUrl: String
+    private let iconExtension: String
     private var bag = Set<AnyCancellable>()
 
-    override init() {
+    init(baseIconUrl: String = Bundle.baseIconUrl, iconExtension: String = Bundle.iconExtension) {
+        self.baseIconUrl = baseIconUrl
+        self.iconExtension = iconExtension
         super.init()
         setupModelState()
     }
@@ -41,8 +46,7 @@ final class HomeViewModel: BaseViewModel {
     /// Navigate to details view
     ///
     /// - Parameters:
-    ///     - router: The main app router.
-    ///     - buildView: The closure which creates root view on start.
+    ///     - forecast: Forecast model.
     func showDetails(forecast: Forecast) {
         router.push(to: .detailsScreen(data: forecast))
     }
@@ -50,23 +54,23 @@ final class HomeViewModel: BaseViewModel {
     /// Load forecast data
     func refreshData() {
         currentState = .loading
-        AF.request(
-            "https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=\(Bundle.accessToken)&units=metric"
-        )
-        .responseDecodable(of: WeatherModel.self) { [weak self] response in
-            switch response.result {
-            case .success(let data):
-                self?.image = URL(
-                    string: "https://openweathermap.org/img/wn/\(data.weather?.first?.icon ?? "")@2x.png"
-                )
-                self?.temperatureString = "\(Int(data.main.temp.rounded()))°"
-                self?.weatherType = data.weather?.first?.description?.capitalized ?? ""
-                self?.currentState = .success
-                self?.loadForecastData()
+        api.loadWeather().sink { [weak self] err in
+            switch err {
             case .failure:
                 self?.currentState = .failure
+            default:
+                return
             }
+        } receiveValue: { [weak self] data in
+            self?.image = URL(
+                string: "\(self?.baseIconUrl ?? "")\(data.weather?.first?.icon ?? "")\(self?.iconExtension ?? "")"
+            )
+            self?.temperatureString = "\(Int(data.main.temp.rounded()))°"
+            self?.weatherType = data.weather?.first?.description?.capitalized ?? ""
+            self?.currentState = .success
+            self?.loadForecastData()
         }
+        .store(in: &bag)
     }
 
     /// Format timestamp to date string
@@ -93,26 +97,23 @@ final class HomeViewModel: BaseViewModel {
     ///     - string: URL string.
     /// - Returns: URL.
     func prepareImageUrl(from string: String) -> URL? {
-        let str = "https://openweathermap.org/img/wn/\(string)@2x.png"
+        let str = "\(baseIconUrl)\(string)\(iconExtension)"
         return URL(string: str)
     }
 
     private func loadForecastData() {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
-        AF.request(
-            "https://api.openweathermap.org/data/2.5/forecast?q=Paris&appid=\(Bundle.accessToken)&units=metric"
-        )
-        .responseDecodable(of: ForecastModel.self, decoder: decoder) { [weak self] response in
-            switch response.result {
-            case .success(let data):
-                self?.forecast = self?.filterForecasets(forecasts: data.list) ?? []
-                self?.currentState = .success
-            case .failure(let errpr):
-                print(errpr)
+        api.loadForecast().sink { [weak self] err in
+            switch err {
+            case .failure:
                 self?.currentState = .failure
+            default:
+                return
             }
+        } receiveValue: { [weak self] data in
+            self?.forecast = self?.filterForecasets(forecasts: data.list) ?? []
+            self?.currentState = .success
         }
+        .store(in: &bag)
     }
 
     private func setupModelState() {
@@ -128,7 +129,8 @@ final class HomeViewModel: BaseViewModel {
                 print("failure")
                 self?.errorMessage = LocalizedStrings.baseError.localized()
             }
-        }.store(in: &bag)
+        }
+        .store(in: &bag)
     }
 
     private func filterForecasets(forecasts: [Forecast]) -> [Forecast] {

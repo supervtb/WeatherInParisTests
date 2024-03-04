@@ -15,7 +15,6 @@ struct ViewModelFactory {
     }
 
     func buildDetailsViewModel(forecast: Forecast) -> DetailsViewModel {
-        var model = DetailsViewModel(forecast: forecast)
-        return model
+        return DetailsViewModel(forecast: forecast)
     }
 }

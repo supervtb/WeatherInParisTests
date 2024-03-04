@@ -49,7 +49,6 @@ struct WeatherView: View {
                     }
                     Text(weatherType)
                         .foregroundColor(.main)
-
                 }
                 Spacer()
                 Text(temperatureString)
