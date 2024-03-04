@@ -11,12 +11,12 @@ import Alamofire
 
 final class ApiImpl: Api {
     func loadWeather() -> AnyPublisher<WeatherModel, AFError> {
-        return request(to: "\(Bundle.baseUrl)\(Bundle.accessToken)\(Bundle.query)", type: WeatherModel.self)
+        return request(to: "\(Bundle.baseUrl)\(Bundle.appId)\(Bundle.query)", type: WeatherModel.self)
     }
     
     func loadForecast() -> AnyPublisher<ForecastModel, AFError> {
         return request(
-            to: "\(Bundle.baseForecastUrl)\(Bundle.accessToken)\(Bundle.query)",
+            to: "\(Bundle.baseForecastUrl)\(Bundle.appId)\(Bundle.query)",
             type: ForecastModel.self
         )
     }
