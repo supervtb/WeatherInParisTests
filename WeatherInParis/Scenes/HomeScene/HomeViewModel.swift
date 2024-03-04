@@ -15,8 +15,8 @@ final class HomeViewModel: BaseViewModel {
         static let dateFormat: String = "MMMM, d"
     }
 
-    @Dependency(\.router) var router
-    @Dependency(\.api) var api
+    @Dependency(\.router) private var router
+    @Dependency(\.api) private var api
     @Published var currentCity: String = LocalizedStrings.paris.localized()
     @Published var dateString: String = {
         return "\(LocalizedStrings.today.localized()), \(Date().formatted(.dateTime.month().day()))"

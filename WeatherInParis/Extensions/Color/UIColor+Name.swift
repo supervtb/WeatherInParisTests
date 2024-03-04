@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Extension for UIColor.
 extension UIColor {
     static let textPrimary = UIColor(named: "main")
 }

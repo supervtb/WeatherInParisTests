@@ -15,7 +15,7 @@ struct HomeView: View {
         static let cornerRadius: CGFloat = 20
     }
 
-    @StateObject var viewModel: HomeViewModel
+    @StateObject private var viewModel: HomeViewModel
 
     init(viewModel: HomeViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
