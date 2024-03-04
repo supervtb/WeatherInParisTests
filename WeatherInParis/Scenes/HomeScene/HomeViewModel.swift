@@ -110,7 +110,7 @@ final class HomeViewModel: BaseViewModel {
                 return
             }
         } receiveValue: { [weak self] data in
-            self?.forecast = self?.filterForecasets(forecasts: data.list) ?? []
+            self?.forecast = self?.filterForecasts(forecasts: data.list) ?? []
             self?.currentState = .success
         }
         .store(in: &bag)
@@ -133,7 +133,7 @@ final class HomeViewModel: BaseViewModel {
         .store(in: &bag)
     }
 
-    private func filterForecasets(forecasts: [Forecast]) -> [Forecast] {
+    private func filterForecasts(forecasts: [Forecast]) -> [Forecast] {
         let slicedData = forecasts.sliced(by: [.year, .month, .day], for: \.dt)
         let filtered = slicedData.compactMap { _, values in
             let midIndex = values.count / 2

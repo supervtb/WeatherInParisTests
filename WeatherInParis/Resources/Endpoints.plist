@@ -4,7 +4,7 @@
 <dict>
 	<key>baseUrl</key>
 	<string>https://api.openweathermap.org/data/2.5/weather?q=Paris&amp;appid=</string>
-	<key>accessToken</key>
+	<key>appId</key>
 	<string>3577ba202a513ce029efb9b04534db44</string>
 	<key>baseIconUrl</key>
 	<string>https://openweathermap.org/img/wn/</string>
