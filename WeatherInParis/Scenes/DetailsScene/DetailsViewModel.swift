@@ -54,22 +54,7 @@ final class DetailsViewModel: BaseViewModel {
         $currentState.sink { [weak self] val in
             switch val {
             case .start:
-                self?.temperatureString = "\(Int(self?.forecast.main.temp.rounded() ?? 0))\(Consts.tempSymb)"
-                self?.dateString = self?.dateFormatter.string(from: self?.forecast.dt ?? Date()) ?? ""
-                self?.weatherType = self?.forecast.weather.first?.description?.capitalized ?? ""
-                self?.image = URL(
-                    string: "\(self?.baseIconUrl ?? "")\(self?.forecast.weather.first?.icon ?? "")\(self?.iconExtension ?? "")"
-                )
-                self?.tempMin = "\(self?.doubleSting(from: self?.forecast.main.tempMin) ?? "")\(Consts.tempSymb)"
-                self?.tempMax = "\(self?.doubleSting(from: self?.forecast.main.tempMax) ?? "")\(Consts.tempSymb)"
-                self?.feelsLike = "\(self?.doubleSting(from: self?.forecast.main.feelsLike) ?? "")\(Consts.tempSymb)"
-                
-                // swiftlint:disable:next line_length
-                self?.pressure = "\(self?.doubleSting(from: self?.forecast.main.pressure, format: Consts.numberFormat) ?? "") \(Consts.pressureSymb)"
-                // swiftlint:disable:next line_length
-                self?.humidity = "\(self?.doubleSting(from: self?.forecast.main.humidity, format: Consts.numberFormat) ?? "")\(Consts.humiditySymb)"
-                // swiftlint:disable:next line_length
-                self?.windSpeed = "\(self?.doubleSting(from: self?.forecast.wind?.speed, format: Consts.numberFormat) ?? "") \(Consts.windSymb)"
+                self?.prepareViewData()
             case .loading:
                 print("loading")
                 self?.isLoaded = false
@@ -79,6 +64,21 @@ final class DetailsViewModel: BaseViewModel {
                 print("error")
             }
         }.store(in: &bag)
+    }
+
+    private func prepareViewData() {
+        temperatureString = "\(Int(forecast.main.temp.rounded()))\(Consts.tempSymb)"
+        dateString = dateFormatter.string(from: forecast.dt)
+        weatherType = forecast.weather.first?.description?.capitalized ?? ""
+        image = URL(
+            string: "\(baseIconUrl)\(forecast.weather.first?.icon ?? "")\(iconExtension)"
+        )
+        tempMin = "\(doubleSting(from: forecast.main.tempMin))\(Consts.tempSymb)"
+        tempMax = "\(doubleSting(from: forecast.main.tempMax))\(Consts.tempSymb)"
+        feelsLike = "\(doubleSting(from: forecast.main.feelsLike))\(Consts.tempSymb)"
+        pressure = "\(doubleSting(from: forecast.main.pressure, format: Consts.numberFormat)) \(Consts.pressureSymb)"
+        humidity = "\(doubleSting(from: forecast.main.humidity, format: Consts.numberFormat))\(Consts.humiditySymb)"
+        windSpeed = "\(doubleSting(from: forecast.wind?.speed, format: Consts.numberFormat)) \(Consts.windSymb)"
     }
 
     private func doubleSting(from value: Double?, format: String = Consts.doubleFormat) -> String {

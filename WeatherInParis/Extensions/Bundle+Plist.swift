@@ -11,7 +11,7 @@ extension Bundle {
 
     enum Keys {
         public static let endpoints = "Endpoints"
-        public static let accessToken = "accessToken"
+        public static let appId = "appId"
         public static let baseUrl = "baseUrl"
         public static let query = "query"
         public static let baseIconUrl = "baseIconUrl"
@@ -27,8 +27,8 @@ extension Bundle {
         return dict
     }
 
-    static var accessToken: String {
-        guard let baseURLString = dictEnvironment[Keys.accessToken] as? String else {
+    static var appId: String {
+        guard let baseURLString = dictEnvironment[Keys.appId] as? String else {
             fatalError("Access token is not found in Endpoints.plist")
         }
         return baseURLString
