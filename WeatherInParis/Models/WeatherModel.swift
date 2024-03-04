@@ -4,6 +4,7 @@
 //
 //  Created by Chubakov, Albert on 02/03/2024.
 //
+
 import Foundation
 
 struct Main: Decodable {

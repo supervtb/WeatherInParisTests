@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Extension for Image
 extension Image {
     static let backgroundImage = Image("bg")
 }

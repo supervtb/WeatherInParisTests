@@ -13,7 +13,6 @@ struct DetailsView: View {
         static let cornerRadius: CGFloat = 20
     }
 
-    @Dependency(\.router) var router
     @StateObject var viewModel: DetailsViewModel
 
     var body: some View {

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Extension for Array
 extension Array {
     func sliced(by dateComponents: Set<Calendar.Component>, for key: KeyPath<Element, Date>) -> [Date: [Element]] {
         let initial: [Date: [Element]] = [:]

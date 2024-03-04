@@ -2,10 +2,6 @@
 
 Simple SwiftUI APP for presenting weather in Paris
 
-## Description
-
-An in-depth paragraph about your project and overview of use.
-
 ## Getting Started
 
 ### Dependencies
