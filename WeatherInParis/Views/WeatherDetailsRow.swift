@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct WeatherDetailsRow: View {
-    var title: String
-    @Binding var description: String
+    private let title: String
+    private let description: String
+
+    init(title: String, description: String) {
+        self.title = title
+        self.description = description
+    }
 
     var body: some View {
         HStack {
