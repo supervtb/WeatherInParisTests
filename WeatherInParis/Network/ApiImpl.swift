@@ -29,12 +29,12 @@ final class ApiImpl: Api {
     }
 
     func loadWeather() -> AnyPublisher<WeatherModel, AFError> {
-        return request(to: "\(Bundle.baseUrl)\(Bundle.appId)\(Bundle.query)", type: WeatherModel.self)
+        return request(to: "\(baseUrl)\(appId)\(query)", type: WeatherModel.self)
     }
     
     func loadForecast() -> AnyPublisher<ForecastModel, AFError> {
         return request(
-            to: "\(Bundle.baseForecastUrl)\(Bundle.appId)\(Bundle.query)",
+            to: "\(baseForecastUrl)\(appId)\(query)",
             type: ForecastModel.self
         )
     }
