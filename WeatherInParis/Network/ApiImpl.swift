@@ -10,6 +10,24 @@ import Combine
 import Alamofire
 
 final class ApiImpl: Api {
+    
+    private(set) var baseUrl: String
+    private(set) var appId: String
+    private(set) var baseForecastUrl: String
+    private(set) var query: String
+
+    init(
+        baseUrl: String = Bundle.baseUrl,
+        appId: String = Bundle.appId,
+        baseForecastUrl: String = Bundle.baseForecastUrl,
+        query: String = Bundle.query
+    ) {
+        self.baseUrl = baseUrl
+        self.appId = appId
+        self.baseForecastUrl = baseForecastUrl
+        self.query = query
+    }
+
     func loadWeather() -> AnyPublisher<WeatherModel, AFError> {
         return request(to: "\(Bundle.baseUrl)\(Bundle.appId)\(Bundle.query)", type: WeatherModel.self)
     }

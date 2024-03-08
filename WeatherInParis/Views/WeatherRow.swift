@@ -14,11 +14,19 @@ struct WeatherRow: View {
         static let defaultSpacing: CGFloat = 20
     }
 
-    @Binding var image: KFImage
-    @Binding var headerText: String
-    @Binding var leftValue: String
-    @Binding var centerValue: String
-    @Binding var rightValue: String
+    private let image: KFImage
+    private let headerText: String
+    private let leftValue: String
+    private let centerValue: String
+    private let rightValue: String
+
+    init(image: KFImage, headerText: String, leftValue: String, centerValue: String, rightValue: String) {
+        self.image = image
+        self.headerText = headerText
+        self.leftValue = leftValue
+        self.centerValue = centerValue
+        self.rightValue = rightValue
+    }
 
     var body: some View {
         VStack(alignment: .leading) {

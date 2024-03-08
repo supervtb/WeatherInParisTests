@@ -28,12 +28,12 @@ struct HomeView: View {
                 
                 // MARK: Current day view
                 WeatherView(
-                    currentCity: $viewModel.currentCity,
-                    dateString: $viewModel.dateString,
-                    image: .constant(KFImage($viewModel.image.wrappedValue)),
-                    weatherType: $viewModel.weatherType,
-                    temperatureString: $viewModel.temperatureString,
-                    isLoaded: $viewModel.currentState.wrappedValue != .loading ? .constant(true) : .constant(false)
+                    currentCity: $viewModel.currentCity.wrappedValue,
+                    dateString: $viewModel.dateString.wrappedValue,
+                    image: KFImage($viewModel.image.wrappedValue),
+                    weatherType: $viewModel.weatherType.wrappedValue,
+                    temperatureString: $viewModel.temperatureString.wrappedValue,
+                    isLoaded: $viewModel.currentState.wrappedValue != .loading ? true : false
                 )
                 Image
                     .backgroundImage
@@ -50,13 +50,11 @@ struct HomeView: View {
                 VStack(alignment: .center) {
                     ForEach($viewModel.forecast, id: \.self) { forecast in
                         WeatherRow(
-                            image: .constant(KFImage(viewModel.prepareImageUrl(
-                                from: forecast.weather.first?.icon.wrappedValue ?? ""
-                            ))),
-                            headerText: .constant(viewModel.formattedDateString(from: forecast.dt.wrappedValue)),
-                            leftValue: .constant("\(viewModel.doubleSting(from: forecast.main.temp.wrappedValue))°"),
-                            centerValue: .constant("\(viewModel.doubleSting(from: forecast.main.tempMin.wrappedValue))°"),
-                            rightValue: .constant("\(viewModel.doubleSting(from: forecast.main.tempMax.wrappedValue))°")
+                            image: KFImage(viewModel.prepareImageUrl(from: forecast.weather.first?.icon.wrappedValue ?? "")),
+                            headerText: viewModel.formattedDateString(from: forecast.dt.wrappedValue),
+                            leftValue: "\(viewModel.doubleSting(from: forecast.main.temp.wrappedValue))°",
+                            centerValue: "\(viewModel.doubleSting(from: forecast.main.tempMin.wrappedValue))°",
+                            rightValue: "\(viewModel.doubleSting(from: forecast.main.tempMax.wrappedValue))°"
                         )
                         .padding(Consts.minSpacing)
                         .onTapGesture {

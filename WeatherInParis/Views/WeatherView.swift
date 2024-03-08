@@ -18,12 +18,28 @@ struct WeatherView: View {
         static let imageSize: CGFloat = 100
     }
 
-    @Binding var currentCity: String
-    @Binding var dateString: String
-    @Binding var image: KFImage
-    @Binding var weatherType: String
-    @Binding var temperatureString: String
-    @Binding var isLoaded: Bool
+    private let currentCity: String
+    private let dateString: String
+    private let image: KFImage
+    private let weatherType: String
+    private let temperatureString: String
+    private let isLoaded: Bool
+
+    init(
+        currentCity: String,
+        dateString: String,
+        image: KFImage,
+        weatherType: String,
+        temperatureString: String,
+        isLoaded: Bool
+    ) {
+        self.currentCity = currentCity
+        self.dateString = dateString
+        self.image = image
+        self.weatherType = weatherType
+        self.temperatureString = temperatureString
+        self.isLoaded = isLoaded
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: Consts.defaultSpacing) {
@@ -61,16 +77,4 @@ struct WeatherView: View {
         }
         .frame(maxWidth: .infinity)
     }
-}
-
-#Preview {
-    WeatherView(
-        currentCity: .constant("Paris"),
-        dateString: .constant("12.12.12"),
-        image: .constant(KFImage(URL(string: "https://openweathermap.org/img/wn/10n@2x.png"))),
-        weatherType: .constant("cloudy"),
-        temperatureString: .constant("12"),
-        isLoaded: .constant(true)
-    )
-    .background(.red)
 }
